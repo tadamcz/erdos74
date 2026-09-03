@@ -66,17 +66,17 @@ budget of $300 and 72 hours of working time per attempt; "ReAct agent, larger bu
 by OpenAI on 3 September 2026: $10 per million input tokens, $50 per million output tokens, $1 per million cache-read tokens and
 $12.50 per million cache-write tokens. The harness itself metered spend at stand-in GPT-5.6 Sol prices, which is what the `usd` figure
 in each file name reflects. **Working time** is the harness's `working_time` (time the agent was actually working, excluding waits on
-API retries and rate limits), in whole hours as reported in the paper; the `h` figure in each file name is instead wall-clock time.
+API retries and rate limits), read from the harness's eval logs; the `h` figure in each file name is instead wall-clock time.
 The Inspect transcripts are linked for the record (access may be restricted).
 
 | Module | Role | Attempt | Cost | Working time | Tokens, millions (input / output / cache read / cache write) | Inspect log |
 |---|---|---|---|---|---|---|
-| `Erdos74/Resolutions/Erdos74_118usd_22h.lean` | **primary** (wired to `Solution.lean`) | default configuration, 28 Aug 2026 (benchmark run) | $218 | 15 h | 0.04 / 1.7 / 44 / 7.2 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/XPZMV4Vttpzg9Ffp7S2BKh) |
-| `Erdos74/Resolutions/Erdos74_25usd_5h.lean` | alternate | ReAct agent, larger budget, 26 Aug 2026 | $47 | 5 h | 0.02 / 0.3 / 16 / 1.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/azYP4n7z4uELLofhEHA6Ev) |
-| `Erdos74/Resolutions/Erdos74_46usd_6h.lean` | alternate | ReAct agent, larger budget, 26 Aug 2026 (re-run) | $84 | 6 h | 0.04 / 0.7 / 18 / 2.4 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/Gwo8829ijia8kjDmp6wHKq) |
-| `Erdos74/Resolutions/Erdos74_81usd_13h.lean` | alternate | default configuration, 2 Sep 2026 | $150 | 8 h | 0.06 / 1.1 / 30 / 5.2 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/oQQQye6GFubTyEcNDRKbY2) |
-| `Erdos74/Resolutions/Erdos74_99usd_17h.lean` | alternate | default configuration, 31 Aug 2026 | $183 | 12 h | 0.03 / 1.5 / 34 / 6.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/YEPWohsDWZZNaRG2QQ3Pa6) |
-| `Erdos74/Resolutions/Erdos74_146usd_19h.lean` | alternate | default configuration, 28 Aug 2026 (re-run) | $271 | 19 h | 0.05 / 2.0 / 65 / 8.5 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/gWbugBEYhF8F6sS9TGJwjY) |
+| `Erdos74/Resolutions/Erdos74_118usd_22h.lean` | **primary** (wired to `Solution.lean`) | default configuration, 28 Aug 2026 (benchmark run) | $218 | 15.0 h | 0.04 / 1.7 / 44 / 7.2 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/XPZMV4Vttpzg9Ffp7S2BKh) |
+| `Erdos74/Resolutions/Erdos74_25usd_5h.lean` | alternate | ReAct agent, larger budget, 26 Aug 2026 | $47 | 5.0 h | 0.02 / 0.3 / 16 / 1.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/azYP4n7z4uELLofhEHA6Ev) |
+| `Erdos74/Resolutions/Erdos74_46usd_6h.lean` | alternate | ReAct agent, larger budget, 26 Aug 2026 (re-run) | $84 | 6.0 h | 0.04 / 0.7 / 18 / 2.4 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/Gwo8829ijia8kjDmp6wHKq) |
+| `Erdos74/Resolutions/Erdos74_81usd_13h.lean` | alternate | default configuration, 2 Sep 2026 | $150 | 8.0 h | 0.06 / 1.1 / 30 / 5.2 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/oQQQye6GFubTyEcNDRKbY2) |
+| `Erdos74/Resolutions/Erdos74_99usd_17h.lean` | alternate | default configuration, 31 Aug 2026 | $183 | 12.0 h | 0.03 / 1.5 / 34 / 6.1 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/YEPWohsDWZZNaRG2QQ3Pa6) |
+| `Erdos74/Resolutions/Erdos74_146usd_19h.lean` | alternate | default configuration, 28 Aug 2026 (re-run) | $271 | 19.0 h | 0.05 / 2.0 / 65 / 8.5 | [transcript](https://viewer.hawk.hawkbench.com/permalink/sample/gWbugBEYhF8F6sS9TGJwjY) |
 
 ## Proof account
 

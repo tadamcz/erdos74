@@ -1,0 +1,43 @@
+--- astra-resolutions/Erdos74_46usd_6h.lean
++++ Erdos74/Resolutions/Erdos74_46usd_6h.lean
+@@ -1,4 +1,4 @@
+-import FormalConjecturesUtil
++import Mathlib
+ 
+ /-!
+ # Erdős Problem 74
+@@ -308,7 +308,7 @@
+ def maskGraph (G : SimpleGraph V) (S : Set V) : SimpleGraph V where
+   Adj x y := G.Adj x y ∧ x ∈ S ∧ y ∈ S
+   symm := by rintro x y ⟨h, hx, hy⟩; exact ⟨h.symm, hy, hx⟩
+-  loopless := by intro x; exact fun h => G.loopless x h.1
++  loopless := by constructor; intro x; exact fun h => G.loopless.irrefl x h.1
+ 
+ @[simp] lemma maskGraph_adj (G : SimpleGraph V) (S : Set V) (x y : V) :
+     (maskGraph G S).Adj x y ↔ G.Adj x y ∧ x ∈ S ∧ y ∈ S := Iff.rfl
+@@ -436,6 +436,7 @@
+     · exact id
+     · exact id
+   loopless := by
++    constructor
+     intro x
+     cases x <;> simp
+ 
+@@ -790,7 +791,7 @@
+ def goodGraph (G : SimpleGraph V) (c : V → Fin 2) : SimpleGraph V where
+   Adj x y := G.Adj x y ∧ c x ≠ c y
+   symm := by rintro x y ⟨hxy, hc⟩; exact ⟨hxy.symm, hc.symm⟩
+-  loopless := by intro x; simp
++  loopless := by constructor; intro x; simp
+ 
+ @[simp] lemma goodGraph_adj (G : SimpleGraph V) (c : V → Fin 2) (x y : V) :
+     (goodGraph G c).Adj x y ↔ G.Adj x y ∧ c x ≠ c y := Iff.rfl
+@@ -963,7 +964,7 @@
+   symm := by
+     rintro x y ⟨hne, p, hp⟩
+     exact ⟨hne.symm, p.reverse, by simpa using hp⟩
+-  loopless := by intro x; simp
++  loopless := by constructor; intro x; simp
+ 
+ lemma walkPower_lift (G : SimpleGraph V) (L : ℕ) {x y : V}
+     (p : (walkPower G L).Walk x y) : ∃ q : G.Walk x y, q.length ≤ p.length * L := by

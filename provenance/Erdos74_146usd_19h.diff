@@ -1,0 +1,46 @@
+--- astra-resolutions/Erdos74_146usd_19h.lean
++++ Erdos74/Resolutions/Erdos74_146usd_19h.lean
+@@ -1,4 +1,4 @@
+-import FormalConjecturesUtil
++import Mathlib
+ 
+ /-!
+ # Erdős Problem 74
+@@ -53,16 +53,6 @@
+ -/
+ noncomputable def SimpleGraph.maxSubgraphEdgeDistToBipartite
+     (G : SimpleGraph V) (n : ℕ) : ℕ := sSup <| SimpleGraph.subgraphEdgeDistsToBipartite G n
+-
+-/--
+-Let $f(n)\to \infty$ possibly very slowly.
+-Is there a graph of infinite chromatic number such that every finite subgraph on $n$
+-vertices can be made bipartite by deleting at most $f(n)$ edges?
+--/
+-theorem erdos_74 : ∀ f : ℕ → ℕ, Tendsto f atTop atTop →
+-    (∃ (V : Type u) (G : SimpleGraph V), G.chromaticNumber = ⊤ ∧
+-    ∀ n, G.maxSubgraphEdgeDistToBipartite n ≤ f n) := by
+-  sorry
+ 
+ -- TODO(firsching): add the remaining statements/comments
+ 
+@@ -1221,8 +1211,19 @@
+ 
+ end E74LocalCutTools
+ 
++universe u
++
+ open E74LocalCutTools in
+-theorem Erdos74.erdos_74.disproof : ¬ (type_of% @Erdos74.erdos_74) := by
++/--
++**Disproof of Erdős problem #74.** It is not the case that for every `f : ℕ → ℕ` tending to
++infinity there is a graph of infinite chromatic number all of whose `n`-vertex subgraphs can
++be made bipartite by deleting at most `f n` edges. Equivalently, some `f → ∞` forces every
++such graph to have finite chromatic number. This is the negation of the statement `erdos_74`
++of the benchmark file.
++-/
++theorem Erdos74.erdos_74.disproof : ¬ (∀ f : ℕ → ℕ, Tendsto f atTop atTop →
++    (∃ (V : Type u) (G : SimpleGraph V), G.chromaticNumber = ⊤ ∧
++    ∀ n, Erdos74.SimpleGraph.maxSubgraphEdgeDistToBipartite G n ≤ f n)) := by
+   intro h
+   obtain ⟨V, G, htop, hbudget⟩ := h budget budget_tendsto
+   have hc : G.Colorable 3 := colorable_of_hereditary G (hereditaryBudget_of_max hbudget)

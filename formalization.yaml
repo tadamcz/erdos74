@@ -3,19 +3,9 @@
 version: v0.4
 project:
   name: 'Erdős problem #74: disproof'
-  description: 'Disproof of Erdős problem #74 in Lean 4 with Mathlib. The answer is no: there is a function `f(n)
-    → ∞` such that every graph (finite or infinite) in which every finite `n`-vertex subgraph can be made bipartite
-    by deleting at most `f(n)` edges has finite chromatic number. Formally, the theorem proved is the negation of
-    the Formal Conjectures statement `Erdos74.erdos_74`, which asserts the existence of such a graph for *every*
-    `f → ∞`. Every resolution in this repository in fact shows that such graphs are 3-colourable, but only the negation
-    of the formal conjecture is advertised in `Challenge.lean`. The FrontierMath Erdős paper notes that the argument
-    appears to work for `f(n) ≍ log n / log log n`; that rate is not part of the formal statement. The proof was
-    produced autonomously by a pre-release version of GPT-6 Astra (OpenAI) in the FrontierMath Erdős benchmark of
-    Tom Adamczewski and Thomas F. Bloom (2026), in which AI systems must prove or disprove formal statements of
-    open Erdős problems inside a sandboxed Lean environment; the statement was taken from Formal Conjectures and
-    was open as of August 2026. The repository contains 6 verified resolutions of the statement (one is wired to
-    Comparator); the human contribution is limited to problem selection, statement review, running the harness and
-    packaging.'
+  description: 'Disproof of Erdős problem #74 (Erdős–Hajnal–Szemerédi): there is a function f(n) → ∞ such that every
+    graph whose n-vertex subgraphs can all be made bipartite by deleting at most f(n) edges has finite chromatic
+    number. Found autonomously by GPT-6 Astra in the FrontierMath Erdős benchmark (Adamczewski and Bloom, 2026).'
   authors:
   - name: Tom Adamczewski
     github: tadamcz

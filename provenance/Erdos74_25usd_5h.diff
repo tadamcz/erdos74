@@ -1,0 +1,28 @@
+--- astra-resolutions/Erdos74_25usd_5h.lean
++++ Erdos74/Resolutions/Erdos74_25usd_5h.lean
+@@ -1,4 +1,4 @@
+-import FormalConjecturesUtil
++import Mathlib
+ 
+ /-!
+ # Erdős Problem 74
+@@ -263,8 +263,9 @@
+     subst j
+     exact ⟨rfl, ha.symm⟩
+   loopless := by
++    constructor
+     rintro ⟨i,x⟩ ⟨_, ha⟩
+-    exact (Gs i).loopless x ha
++    exact (Gs i).loopless.irrefl x ha
+ 
+ def natGraphSumHom (Gs : ℕ → SimpleGraph V) (i : ℕ) : Gs i →g natGraphSum Gs where
+   toFun x := (i,x)
+@@ -1216,7 +1217,7 @@
+       intro x y h
+       obtain ⟨q, hq⟩ := h.2
+       exact ⟨h.1.symm, q.reverse, by simpa using hq⟩
+-    loopless := by intro x h; exact h.1 rfl }
++    loopless := by constructor; intro x h; exact h.1 rfl }
+   have hedge : ∀ {x y : V}, G.Adj x y → K.Reachable (root x) (root y) := by
+     intro x y hxy
+     by_cases he : root x = root y

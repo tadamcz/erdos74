@@ -1,0 +1,78 @@
+--- astra-resolutions/Erdos74_99usd_17h.lean
++++ Erdos74/Resolutions/Erdos74_99usd_17h.lean
+@@ -1,4 +1,4 @@
+-import FormalConjecturesUtil
++import Mathlib
+ 
+ /-!
+ # Erdős Problem 74
+@@ -54,16 +54,6 @@
+ noncomputable def SimpleGraph.maxSubgraphEdgeDistToBipartite
+     (G : SimpleGraph V) (n : ℕ) : ℕ := sSup <| SimpleGraph.subgraphEdgeDistsToBipartite G n
+ 
+-/--
+-Let $f(n)\to \infty$ possibly very slowly.
+-Is there a graph of infinite chromatic number such that every finite subgraph on $n$
+-vertices can be made bipartite by deleting at most $f(n)$ edges?
+--/
+-theorem erdos_74 : ∀ f : ℕ → ℕ, Tendsto f atTop atTop →
+-    (∃ (V : Type u) (G : SimpleGraph V), G.chromaticNumber = ⊤ ∧
+-    ∀ n, G.maxSubgraphEdgeDistToBipartite n ≤ f n) := by
+-  sorry
+-
+ -- TODO(firsching): add the remaining statements/comments
+ 
+ end Erdos74
+@@ -89,7 +79,7 @@
+ def badGraph (G : SimpleGraph V) (p : V → Bool) : SimpleGraph V where
+   Adj u v := G.Adj u v ∧ p u = p v
+   symm := fun _ _ h ↦ ⟨h.1.symm, h.2.symm⟩
+-  loopless := fun v h ↦ G.loopless v h.1
++  loopless := ⟨fun v h ↦ G.loopless.irrefl v h.1⟩
+ 
+ noncomputable def badEdges [Fintype V] (G : SimpleGraph V) (p : V → Bool) :
+     Finset (Sym2 V) := by
+@@ -104,7 +94,7 @@
+ def mask (G : SimpleGraph V) (Z : Set V) : SimpleGraph V where
+   Adj u v := G.Adj u v ∧ u ∉ Z ∧ v ∉ Z
+   symm := fun _ _ h ↦ ⟨h.1.symm, h.2.2, h.2.1⟩
+-  loopless := fun v h ↦ G.loopless v h.1
++  loopless := ⟨fun v h ↦ G.loopless.irrefl v h.1⟩
+ 
+ def Independent (G : SimpleGraph V) (Z : Set V) : Prop :=
+   ∀ ⦃u v⦄, G.Adj u v → u ∈ Z → v ∈ Z → False
+@@ -1367,6 +1357,7 @@
+     exact ⟨hne.symm, w.reverse, by simpa using hw,
+       by simpa [Bool.xor_comm] using hx⟩
+   loopless := by
++    constructor
+     intro x h
+     exact h.1 rfl
+ 
+@@ -1695,7 +1686,7 @@
+           have ha' : a = u := ha
+           have hb' : b = u := hb
+           subst a b
+-          exact G.loopless u hab
++          exact G.loopless.irrefl u hab
+         · intro a b hab ha hb hp
+           have habmem := (mem_badEdges G p a b).mpr ⟨hab, hp⟩
+           rw [he, Finset.mem_singleton] at habmem
+@@ -1962,5 +1953,16 @@
+ 
+ end E74
+ 
+-theorem Erdos74.erdos_74.disproof : ¬ (type_of% @Erdos74.erdos_74) := by
++universe u
++
++/--
++**Disproof of Erdős problem #74.** It is not the case that for every `f : ℕ → ℕ` tending to
++infinity there is a graph of infinite chromatic number all of whose `n`-vertex subgraphs can
++be made bipartite by deleting at most `f n` edges. Equivalently, some `f → ∞` forces every
++such graph to have finite chromatic number. This is the negation of the statement `erdos_74`
++of the benchmark file.
++-/
++theorem Erdos74.erdos_74.disproof : ¬ (∀ f : ℕ → ℕ, Tendsto f atTop atTop →
++    (∃ (V : Type u) (G : SimpleGraph V), G.chromaticNumber = ⊤ ∧
++    ∀ n, Erdos74.SimpleGraph.maxSubgraphEdgeDistToBipartite G n ≤ f n)) := by
+   exact E74.disproof

@@ -1,10 +1,8 @@
+> **Note.** This entire repository was machine-written by AI assistants at the direction of Tom Adamczewski. The Lean proof itself was written by GPT-6 Astra, as described below.
+
 # Erdős problem #74: disproof
 
 [![CI](https://github.com/tadamcz/erdos74/actions/workflows/ci.yml/badge.svg)](https://github.com/tadamcz/erdos74/actions/workflows/ci.yml)
-
-> **Note.** This README, the documentation in `Challenge.lean` and `formalization.yaml` were machine-written by Claude (Anthropic)
-> at the direction of Tom Adamczewski, from the FrontierMath Erdős paper, the benchmark files and the module documentation inside
-> the proof files, and reviewed by him. The Lean proofs themselves were written by GPT-6 Astra, as described below.
 
 Machine-checked disproof of [Erdős problem #74](https://www.erdosproblems.com/74) in Lean 4 with Mathlib, found autonomously by a
 pre-release version of **GPT-6 Astra** (OpenAI) in the **FrontierMath Erdős** benchmark (Adamczewski and Bloom, 2026). The

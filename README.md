@@ -5,8 +5,7 @@
 [![CI](https://github.com/tadamcz/erdos74/actions/workflows/ci.yml/badge.svg)](https://github.com/tadamcz/erdos74/actions/workflows/ci.yml)
 
 Machine-checked disproof of [Erdős problem #74](https://www.erdosproblems.com/74) in Lean 4 with Mathlib, found autonomously by a
-pre-release version of **GPT-6 Astra** (OpenAI) in the **FrontierMath Erdős** benchmark (Adamczewski and Bloom, 2026). The
-repository packages the AI-written proofs for the [Palomar registry](https://palomar-registry.org/): `Challenge.lean` is the
+pre-release version of **GPT-6 Astra** (OpenAI) in the **FrontierMath Erdős** benchmark (Adamczewski and Bloom, 2026). In this repository, `Challenge.lean` is the
 small statement a reader audits, `Solution.lean` proves it, and [Comparator](https://github.com/leanprover/comparator) checks that the two
 statements coincide and that only the standard axioms are used.
 
@@ -111,13 +110,13 @@ paper judges the six disproofs to consist of three distinct arguments.
 - `formalization.yaml` — structured metadata (provenance, sources, classification, automation, review) in the mathlib-initiative v0.4 format.
 - `provenance/` — SHA-256 sums of the benchmark output files and unified diffs from them to the modules here.
 - `scripts/verify-comparator.sh` runs the pinned Comparator, lean4export, NanoDa and Landrun locally (Linux); `scripts/validate-formalization.rb` checks the metadata file.
-- `.github/workflows/ci.yml` — builds the project and runs Comparator (layout from the Palomar template; the template's doc-gen4 job is omitted because the modules import all of Mathlib).
+- `.github/workflows/ci.yml` — builds the project and runs Comparator.
 
 ## Edits relative to the benchmark output
 
 The proof modules are the model's final `Spec.lean` files, verified by the benchmark, with only the following mechanical changes; the
 exact diffs are in `provenance/`. The toolchain was moved from Lean v4.27.0 / Mathlib (via Formal Conjectures at commit
-`488aade2`) to Lean v4.28.0 / Mathlib v4.28.0, the oldest release Palomar accepts; the only change this required is the
+`488aade2`) to Lean v4.28.0 / Mathlib v4.28.0; the only change this required is the
 `loopless` adjustment listed below for the files it affects.
 
 - `Erdos74_118usd_22h.lean` (SHA-256 of the benchmark output: `e9e9c244e5be1215805ac11ce355474d7fea26f9af665e182f1033df0c98837f`):
@@ -175,8 +174,7 @@ ruby scripts/validate-formalization.rb
 ```
 
 CI runs the same checks. The compared theorem depends on no `sorry` and on no axioms beyond `propext`, `Quot.sound` and
-`Classical.choice`. This repository is prepared for submission to Palomar through the
-[submission form](https://submit.palomar-registry.org/) with the full commit SHA; registration is a separate step by the maintainer.
+`Classical.choice`.
 
 ## Licence and attribution
 

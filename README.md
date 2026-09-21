@@ -52,7 +52,7 @@ assistant, autonomously and under a fixed, disclosed budget ($300 and 72 hours o
 agent works in a network-isolated Docker container with a Lean 4 toolchain (v4.27.0) and Mathlib, SageMath and Python; its final
 `Spec.lean` is checked in a separate pristine container by Comparator against the trusted statement, permitting only `propext`,
 `Quot.sound` and `Classical.choice`. The benchmark, harness and statements are public at
-[epoch-research/LeanOpenProblems](https://github.com/epoch-research/LeanOpenProblems); the paper is in preparation. No human saw or steered the proof search.
+[epoch-research/LeanOpenProblems](https://github.com/epoch-research/LeanOpenProblems); the paper is [FrontierMath Erdős](https://epoch.ai/files/frontiermath-erdos.pdf). No human saw or steered the proof search.
 
 **Statement.** The definitions and the statement come verbatim from [`FormalConjectures/ErdosProblems/74.lean`](https://github.com/google-deepmind/formal-conjectures/blob/488aade228ec37880b8fec178c173c07d279bb53/FormalConjectures/ErdosProblems/74.lean) in Google DeepMind's Formal Conjectures at commit `488aade228ec`, where the problem is stated with `sorry` as open. The benchmark isolated the selected statement into [`apn/data/erdos/Isolated/Erdos74.erdos_74.lean`](https://github.com/epoch-research/LeanOpenProblems/blob/77882c437ca1dfefab3b27fa00f1d29788100311/apn/data/erdos/Isolated/Erdos74.erdos_74.lean) (with the FC `answer(sorry) ↔` wrapper removed and a `.disproof` negation added), and that file is exactly what the model received.
 
